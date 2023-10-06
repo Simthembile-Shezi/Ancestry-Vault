@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ancestry_vault/account/verify_password_reset.dart';
+import 'package:vault/account/verify_password_reset.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key, required this.title});

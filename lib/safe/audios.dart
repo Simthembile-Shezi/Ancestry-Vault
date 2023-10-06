@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'package:ancestry_vault/widget/audio_item.dart';
+import 'package:vault/widget/audio_item.dart';
 import 'package:flutter/material.dart';
 
 class Audio extends StatefulWidget {

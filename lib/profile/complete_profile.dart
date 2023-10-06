@@ -1,4 +1,4 @@
-import 'package:ancestry_vault/profile/dashboard.dart';
+import 'package:vault/profile/dashboard.dart';
 import 'package:flutter/material.dart';
 
 class CompleteProfile extends StatefulWidget {

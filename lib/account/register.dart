@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ancestry_vault/profile/complete_profile.dart';
+import 'package:vault/profile/complete_profile.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key, required this.title});

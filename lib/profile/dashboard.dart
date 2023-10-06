@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
-import 'package:ancestry_vault/profile/profile.dart';
-import 'package:ancestry_vault/safe/audios.dart';
-import 'package:ancestry_vault/safe/documents.dart';
-import 'package:ancestry_vault/safe/pictures.dart';
-import 'package:ancestry_vault/safe/videos.dart';
-import 'package:ancestry_vault/widget/safe_item_card.dart';
+import 'package:vault/profile/profile.dart';
+import 'package:vault/safe/audios.dart';
+import 'package:vault/safe/documents.dart';
+import 'package:vault/safe/pictures.dart';
+import 'package:vault/safe/videos.dart';
+import 'package:vault/widget/safe_item_card.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -22,7 +22,7 @@ class _Dashboard extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ancestry Vault"),
+        title: Text("Vault"),
         actions: [
           IconButton(
             icon: Icon(Icons.more_vert),

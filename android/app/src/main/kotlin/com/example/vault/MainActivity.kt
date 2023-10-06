@@ -1,4 +1,4 @@
-package com.example.ancestry_vault
+package com.example.vault
 
 import io.flutter.embedding.android.FlutterActivity
 

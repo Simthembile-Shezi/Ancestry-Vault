@@ -20,10 +20,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ancestry Vault',
+      title: 'Vault',
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
-        backgroundColor: Colors.grey,
+        colorScheme: ColorScheme.dark(),
       ),
       home: const Login(),
     );

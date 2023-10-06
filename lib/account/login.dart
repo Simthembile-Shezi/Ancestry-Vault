@@ -1,7 +1,7 @@
-import 'package:ancestry_vault/profile/dashboard.dart';
+import 'package:vault/profile/dashboard.dart';
 import 'package:flutter/material.dart';
-import 'package:ancestry_vault/account/register.dart';
-import 'package:ancestry_vault/account/forgot_password.dart';
+import 'package:vault/account/register.dart';
+import 'package:vault/account/forgot_password.dart';
 
 class Login extends StatefulWidget {
   final String title = "Login";
@@ -29,7 +29,7 @@ class _Login extends State<Login> {
               Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(5),
-                child: const Text("Welcome to the Ancestry Vault"),
+                child: const Text("Welcome to the Vault"),
               ),
               Container(
                 alignment: Alignment.center,

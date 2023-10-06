@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ancestry_vault/account/login.dart';
+import 'package:vault/account/login.dart';
 
 class VerifyPasswordReset extends StatefulWidget {
   const VerifyPasswordReset(
