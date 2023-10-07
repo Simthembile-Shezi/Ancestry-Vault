@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, prefer_const_constructors_in_immutables
 
 import 'package:vault/profile/profile.dart';
 import 'package:vault/safe/audios.dart';
@@ -9,9 +9,9 @@ import 'package:vault/widget/safe_item_card.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({super.key, required this.title});
+  Dashboard({super.key, required this.document});
 
-  final String title;
+  final String document;
 
   @override
   State<Dashboard> createState() => _Dashboard();
@@ -28,35 +28,39 @@ class _Dashboard extends State<Dashboard> {
             icon: Icon(Icons.more_vert),
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Profile()));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Profile(
+                            document: widget.document,
+                          )));
             },
           ),
         ],
       ),
       body: Padding(
           padding: const EdgeInsets.all(5),
-          child: ListView(children: const [
+          child: ListView(children: [
             SafeItemCard(
-                title: "Documents",
+                document: widget.document, //userId
+                subCollection: "Documents",
                 icon: Icon(Icons.document_scanner),
-                subtitle: "60",
                 onPressed: Document()),
             SafeItemCard(
-              title: "Pictures",
+              document: widget.document,
+              subCollection: "Pictures",
               icon: Icon(Icons.photo),
-              subtitle: "60",
               onPressed: Picture(),
             ),
             SafeItemCard(
-              title: "Audios",
+              document: widget.document,
+              subCollection: "Audios",
               icon: Icon(Icons.audio_file),
-              subtitle: "60",
               onPressed: Audio(),
             ),
             SafeItemCard(
-              title: "Videos",
+              document: widget.document,
+              subCollection: "Videos",
               icon: Icon(Icons.video_collection),
-              subtitle: "60",
               onPressed: Video(),
             ),
           ])),

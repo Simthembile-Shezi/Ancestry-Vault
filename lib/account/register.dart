@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:vault/profile/complete_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -133,7 +131,6 @@ class _Register extends State<Register> {
       context,
       MaterialPageRoute<void>(
         builder: (BuildContext context) => CompleteProfile(
-          title: "Complete Profile",
           email: email,
         ),
       ),

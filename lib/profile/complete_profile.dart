@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CompleteProfile extends StatefulWidget {
-  final String title;
   final String email;
 
-  const CompleteProfile({super.key, required this.title, required this.email});
+  const CompleteProfile({super.key, required this.email});
 
   @override
   State<CompleteProfile> createState() => _CompleteProfile();
@@ -24,7 +23,7 @@ class _CompleteProfile extends State<CompleteProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: const Text("Complete Profile"),
         ),
         body: Padding(
           padding: const EdgeInsets.all(10),
@@ -33,7 +32,7 @@ class _CompleteProfile extends State<CompleteProfile> {
               Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(5),
-                child: Text(widget.title),
+                child: const Text("Complete Profile"),
               ),
               Container(
                 padding: const EdgeInsets.all(5),
@@ -110,7 +109,7 @@ class _CompleteProfile extends State<CompleteProfile> {
         ));
   }
 
-  void _updateUserProfile(String email) async {
+  Future<void> _updateUserProfile(String email) async {
     String title = titleController.text.toString();
     String gender = genderController.text.toString();
     String fullName = fullNameController.text.toString();
@@ -131,47 +130,26 @@ class _CompleteProfile extends State<CompleteProfile> {
     } else {
       CollectionReference users =
           FirebaseFirestore.instance.collection('users');
-      QuerySnapshot existingUsers =
-          await users.where("email", isEqualTo: email).get();
 
-      if (existingUsers.docs.isEmpty) {
-        users.add({
-          "email": email,
-          "title": title,
-          "gender": gender,
-          "fullName": fullName,
-          "maidenName": maidenName,
-          "lastName": lastName,
-          "dateOfBirth": dateOfBirth,
-        }).then((_) {
-          _completeUpdateProfile();
-        }).catchError((error) {
-          errorMessage = "Try again";
-        });
-      } else {
-        DocumentSnapshot userDoc = existingUsers.docs.first;
-        users.doc(userDoc.id).update({
-          "title": title,
-          "gender": gender,
-          "fullName": fullName,
-          "maidenName": maidenName,
-          "lastName": lastName,
-          "dateOfBirth": dateOfBirth,
-        }).then((_) {
-          _completeUpdateProfile();
-        }).catchError((error) {
-          errorMessage = "Try again";
-        });
-      }
+      DocumentReference<Object?> documentReference = await users.add({
+        "email": email,
+        "title": title,
+        "gender": gender,
+        "fullName": fullName,
+        "maidenName": maidenName,
+        "lastName": lastName,
+        "dateOfBirth": dateOfBirth,
+      });
+      _completeUpdateProfile(documentReference.id);
     }
   }
 
-  void _completeUpdateProfile() {
+  void _completeUpdateProfile(String document) {
     Navigator.pushReplacement<void, void>(
       context,
       MaterialPageRoute<void>(
-        builder: (BuildContext context) => const Dashboard(
-          title: 'Dashboard',
+        builder: (BuildContext context) => Dashboard(
+          document: document,
         ),
       ),
     );

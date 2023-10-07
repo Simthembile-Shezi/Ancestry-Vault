@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:vault/profile/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:vault/account/register.dart';
@@ -107,7 +108,13 @@ class _Login extends State<Login> {
       //Error message
     } else {
       if (await _signIn(email, password)) {
-        _completeSignIn();
+        CollectionReference users =
+            FirebaseFirestore.instance.collection('users');
+        QuerySnapshot existingUsers =
+            await users.where("email", isEqualTo: email).get();
+
+        DocumentSnapshot userDoc = existingUsers.docs.first;
+        _completeSignIn(userDoc.id);
       }
     }
   }
@@ -129,12 +136,12 @@ class _Login extends State<Login> {
     }
   }
 
-  void _completeSignIn() {
+  void _completeSignIn(String document) {
     Navigator.pushReplacement<void, void>(
       context,
       MaterialPageRoute<void>(
-        builder: (BuildContext context) => const Dashboard(
-          title: 'Dashboard',
+        builder: (BuildContext context) => Dashboard(
+          document: document,
         ),
       ),
     );
