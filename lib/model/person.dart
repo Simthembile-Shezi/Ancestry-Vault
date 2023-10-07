@@ -1,10 +1,10 @@
 class Person {
   late String id;
-  late String firstName;
-  late String secondName;
+  late String email;
+  late String title;
+  late String gender;
+  late String fullName;
   late String maidenName;
   late String lastName;
-  late String nickName;
-  late DateTime dateOfBirth;
-  late String gender;
+  late String dateOfBirth;
 }

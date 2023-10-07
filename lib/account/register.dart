@@ -1,5 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:vault/profile/complete_profile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+FirebaseAuth _auth = FirebaseAuth.instance;
 
 class Register extends StatefulWidget {
   const Register({super.key, required this.title});
@@ -11,7 +16,7 @@ class Register extends StatefulWidget {
 }
 
 class _Register extends State<Register> {
-  TextEditingController userNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   String errorMessage = " ";
@@ -39,10 +44,10 @@ class _Register extends State<Register> {
               Container(
                 padding: const EdgeInsets.all(5),
                 child: TextField(
-                  controller: userNameController,
+                  controller: emailController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'User Name',
+                    labelText: 'Email',
                   ),
                 ),
               ),
@@ -74,21 +79,64 @@ class _Register extends State<Register> {
                 child: ElevatedButton(
                   child: const Text("Sign Up"),
                   onPressed: () {
-                    try {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CompleteProfile(
-                                    title: "Complete Profile",
-                                  )));
-                    } catch (e) {
-                      errorMessage = "Please enter all details";
-                    }
+                    _checkRegister();
                   },
                 ),
               ),
             ],
           ),
         ));
+  }
+
+  Future<void> _checkRegister() async {
+    String email = emailController.text.toString();
+    String password = passwordController.text.toString();
+    String confirmPassword = confirmPasswordController.text.toString();
+
+    if (email.isEmpty) {
+      //Error message
+    } else if (password.isEmpty) {
+      //Error message
+    } else if (confirmPassword.isEmpty) {
+      //Error message
+    } else {
+      if (password.compareTo(confirmPassword) == 0) {
+        if (await _register(email, password)) {
+          _completeRegister(email);
+        }
+      } else {
+        //Error message
+      }
+    }
+  }
+
+  Future<bool> _register(String email, String password) async {
+    try {
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      String? username = userCredential.user!.email;
+      if (username != null && username.compareTo(email) == 0) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
+
+  void _completeRegister(String email) {
+    Navigator.pushReplacement<void, void>(
+      context,
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) => CompleteProfile(
+          title: "Complete Profile",
+          email: email,
+        ),
+      ),
+    );
   }
 }

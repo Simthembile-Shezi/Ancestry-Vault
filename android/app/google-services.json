@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "515691402790",
+    "project_id": "vault-offline",
+    "storage_bucket": "vault-offline.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515691402790:android:4b39b38d027e64b74538e7",
+        "android_client_info": {
+          "package_name": "com.example.vault"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqQn5n1the_tJk1dAGo4l_wANlm7K5mA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

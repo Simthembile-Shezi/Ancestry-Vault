@@ -1,15 +1,19 @@
 // ignore_for_file: prefer_const_constructors, unused_local_variable
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:vault/firebase_options.dart';
 import 'account/login.dart';
 
-void main() {
+void main() async {
   //Do not allow landscape mode
   var setPreferredOrientations = SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
