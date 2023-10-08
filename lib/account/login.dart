@@ -62,46 +62,49 @@ class _Login extends State<Login> {
                 ),
               ),
               TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
+                  onPressed: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
                             builder: (context) => const ForgotPassword(
-                                  title: "Forgot Password",
-                                )));
-                  },
+                              title: "Forgot Password",
+                            ),
+                          ),
+                        )
+                      },
                   child: const Text("Forgot password")),
               Container(
                 height: 50,
                 padding: const EdgeInsets.all(5),
                 child: ElevatedButton(
                   child: const Text("Login"),
-                  onPressed: () {
-                    _checkLogin();
-                  },
+                  onPressed: () => _checkLogin(),
                 ),
               ),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 const Text("Do not have a account?"),
                 TextButton(
                     child: const Text("Sign up"),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
+                    onPressed: () => {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
                               builder: (context) => const Register(
-                                    title: 'Sign Up',
-                                  )));
-                    }),
-              ])
+                                title: 'Sign Up',
+                              ),
+                            ),
+                          ),
+                        }),
+              ]),
             ],
           ),
         ));
   }
 
   Future<void> _checkLogin() async {
-    String email = emailController.text.toString();
-    String password = passwordController.text.toString();
+    String email =
+        "simthembileshezi2002@gmail.com"; //emailController.text.toString();
+    String password = "zxcvbnm"; //passwordController.text.toString();
     if (email.isEmpty) {
       //Error message
     } else if (password.isEmpty) {

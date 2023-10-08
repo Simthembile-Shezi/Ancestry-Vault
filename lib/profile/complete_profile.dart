@@ -99,9 +99,7 @@ class _CompleteProfile extends State<CompleteProfile> {
                 padding: const EdgeInsets.all(5),
                 child: ElevatedButton(
                   child: const Text("Save"),
-                  onPressed: () {
-                    _updateUserProfile(widget.email);
-                  },
+                  onPressed: () => _updateUserProfile(widget.email),
                 ),
               ),
             ],
