@@ -7,10 +7,12 @@ import 'account/login.dart';
 
 void main() async {
   //Do not allow landscape mode
+
   var setPreferredOrientations = SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
